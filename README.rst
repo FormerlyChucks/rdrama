@@ -10,7 +10,7 @@ Installation
 
 .. code-block:: bash
 
-   pip3 install rdrama
+   git clone https://github.com/IThinkImOKAY/rdrama && cd rdrama && pip3 install .
 
 How to use
 ----------
