@@ -1,5 +1,7 @@
 import requests
 
+token_path = '/tmp/ruqqus_token'
+
 class Drama:
     def __init__(self, client_id, client_secret, user_agent, access_token, refresh_token,x_user_type='Bot'):
         self.client_id = client_id
@@ -8,20 +10,20 @@ class Drama:
         self.refresh_token = refresh_token
         self.access_token = access_token
         self.x_user_type = x_user_type
+        self.auth_header = f"Bearer {self.access_token}"
+        self.headers = {"Authorization": self.auth_header, "User-Agent": self.user_agent,"X-User-Type": self.x_user_type}
+        self.base_url = "https://rdrama.net/{}"
 
     def request(self, method, endpoint, data):
-        auth_header = "Bearer {}".format(open(self.token_file,'r+').read().replace("\n",""))
-        headers = {"Authorization": auth_header, "User-Agent": self.user_agent,"X-User-Type": str(self.x_user_type)}
-        endpoint = endpoint.split('/',1)[1]
-        url = 'https://rdrama.net/{}'.format(endpoint)
-        response = requests.request(method,url,headers=headers,data=data)
+        self.endpoint = endpoint.split('/',1)[1]
+        self.url = self.base_url.format(self.endpoint)
+        response = requests.request(method,self.url,headers=self.headers,data=data)
         self.status_code = response.status_code
-        if self.status_code == 200:
+        self.response_reason = response.reason
+        if self.status_code in [200,204]:
             return response.json()
-        elif self.status_code == 204:
-            return self.status_code
         else:
-            raise Exception('{}/{} on endpoint: {}'.format(response.status_code,response.reason,endpoint))
+            raise Exception(f"{self.status_code}/{self.response_reason} on endpoint {self.endpoint}")
 
     def get(self, endpoint, data=None):
         return self.request('GET', endpoint, data=data)
