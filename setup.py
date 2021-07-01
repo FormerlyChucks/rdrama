@@ -1,15 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='rdrama',
       version='0.0.0',
-      description='rdrama API Wrapper',
-      long_description=open('README.rst').read(),
-      url='https://github.com/ithinkimokay/rdrama',
       author='diogenesjunior',
       author_email='diogenesjunior@protonmail.com',
-      packages=['rdrama'],
-      zip_safe=False,
-      keywords='rdrama API RAW',
+      description='rdrama.net api wrapper',
+      long_description=open('README.rst').read(),
+      url='https://github.com/ithinkimokay/rdrama',
+      packages=find_packages(),
       install_requires=['requests'],
-      include_package_data=True
-      )
+      keywords='rdrama API wrapper',
+      zip_safe=True)
