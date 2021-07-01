@@ -10,7 +10,7 @@ Installation
 
 .. code-block:: bash
 
-   git clone https://github.com/IThinkImOKAY/rdrama && cd rdrama && pip3 install .
+   pip3 install rdrama
 
 How to use
 ----------
@@ -26,6 +26,7 @@ Sending a get request:
                          user_agent='user_agent',
                          access_token='access_token',
                          refresh_token='refresh_token')
+                         
     dramaqueen = drama.get('/api/v1/user/dramaqueen')
     print(dramaqueen)
     
@@ -40,10 +41,10 @@ Sending a post request:
                          user_agent='user_agent',
                          access_token='access_token',
                          refresh_token='refresh_token')
-    title = 'API TESTING'
-    url = 'https://localhost:8000'
+                         
     parameters = {'board': 'general',
-                  'title': title,
-                  'url' : url}
+                  'title': 'API TESTING',
+                  'url' : 'https://localhost:8000'}
+                  
     submit = drama.post('/api/v1/submit', data=parameters)
     print(submit)

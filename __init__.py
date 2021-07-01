@@ -8,13 +8,10 @@ class Drama:
         self.refresh_token = refresh_token
         self.access_token = access_token
         self.x_user_type = x_user_type
-        self.auth_header = f"Bearer {self.access_token}"
-        self.headers = {"Authorization": self.auth_header, "User-Agent": self.user_agent,"X-User-Type": self.x_user_type}
-        self.base_url = "https://rdrama.net/{}"
 
     def request(self, method, endpoint, data):
-        self.endpoint = endpoint.split('/',1)[1]
-        self.url = self.base_url.format(self.endpoint)
+        self.headers = {"Authorization": f"Bearer {self.access_token}", "User-Agent": self.user_agent,"X-User-Type": self.x_user_type}
+        self.url = f"https://rdrama.net/{endpoint.split('/',1)[1]}"
         response = requests.request(method,self.url,headers=self.headers,data=data)
         self.status_code = response.status_code
         self.response_reason = response.reason

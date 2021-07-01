@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='rdrama',
-      version='0.0.0',
+      version='0.0.1',
       author='diogenesjunior',
       author_email='diogenesjunior@protonmail.com',
       description='rdrama.net api wrapper',
