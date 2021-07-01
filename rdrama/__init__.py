@@ -1,7 +1,5 @@
 import requests
 
-token_path = '/tmp/ruqqus_token'
-
 class Drama:
     def __init__(self, client_id, client_secret, user_agent, access_token, refresh_token,x_user_type='Bot'):
         self.client_id = client_id
