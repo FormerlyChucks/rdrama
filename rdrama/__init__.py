@@ -18,10 +18,10 @@ class Drama:
         if self.status_code in [200,204]:
             return response.json()
         else:
-            raise Exception(f"{self.status_code}/{self.response_reason} on endpoint {self.endpoint}")
+            raise Exception(f"{self.status_code}/{self.response_reason} on endpoint {endpoint}")
 
     def get(self, endpoint, data=None):
         return self.request('GET', endpoint, data=data)
-    
+
     def post(self, endpoint, data=None):
         return self.request('POST', endpoint, data=data)
