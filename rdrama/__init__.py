@@ -15,8 +15,10 @@ class Drama:
         response = requests.request(method,self.url,headers=self.headers,data=data)
         self.status_code = response.status_code
         self.response_reason = response.reason
-        if self.status_code in [200,204]:
+        if self.status_code == 200:
             return response.json()
+        if self.status_code == 204:
+            return response
         else:
             raise Exception(f"{self.status_code}/{self.response_reason} on endpoint {endpoint}")
 
