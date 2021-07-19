@@ -18,7 +18,7 @@ class Drama:
         if self.status_code == 200:
             return response.json()
         if self.status_code == 204:
-            return response
+            return self.status_code
         else:
             raise Exception(f"{self.status_code}/{self.response_reason} on endpoint {endpoint}")
 
